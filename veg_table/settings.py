@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,7 +43,10 @@ INSTALLED_APPS = [
 
     'account.apps.AccountConfig',
     'rest_framework',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+
+    'drf_yasg',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -188,3 +192,27 @@ EMAIL_USE_TLS = True
 
 
 PASSWORD_RESET_TIMEOUT=900          # 900 Sec = 15 Min
+
+# Swagger
+SWAGGER_SETTINGS = {
+ 'SHOW_REQUEST_HEADERS': True,
+   'SECURITY_DEFINITIONS': {
+      # 'Basic': {
+      #       'type': 'basic'
+      # },
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      },
+
+   },
+
+   'USE_SESSION_AUTH': False,
+   'is_authenticated': True,
+   'unauthenticated_user':None,
+
+}
+
+ #CORS
+CORS_ORIGIN_ALLOW_ALL = True   

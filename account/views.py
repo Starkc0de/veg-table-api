@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 from account.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import generics
 
 
 
@@ -19,8 +20,9 @@ def get_tokens_for_user(user):
     }
 
 
-class UserRegistrationView(APIView):
+class UserRegistrationView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
+    serializer_class = UserRegistrationSerializer
 
     def post(self, request, format=None):
         serializer = UserRegistrationSerializer(data=request.data)
@@ -30,8 +32,9 @@ class UserRegistrationView(APIView):
         return Response({'token': token, 'msg': 'Registration Successful'}, status=status.HTTP_201_CREATED)
 
 
-class UserLoginView(APIView):
+class UserLoginView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
+    serializer_class = UserLoginSerializer
 
     def post(self, request, format=None):
         serializer = UserLoginSerializer(data=request.data)
@@ -46,8 +49,9 @@ class UserLoginView(APIView):
             return Response({'errors': {'non_field_errors': ['Email or Password is not Valid']}}, status=status.HTTP_404_NOT_FOUND)
 
 
-class UserChangePasswordView(APIView):
+class UserChangePasswordView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
+    serializer_class = UserChangePasswordSerializer
     permission_classes = [IsAuthenticated]
 
     def post(self, request, format=None):
@@ -57,8 +61,9 @@ class UserChangePasswordView(APIView):
         return Response({'msg': 'Password Changed Successfully'}, status=status.HTTP_200_OK)
 
 
-class SendPasswordResetEmailView(APIView):
+class SendPasswordResetEmailView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
+    serializer_class = SendPasswordResetEmailSerializer
 
     def post(self, request, format=None):
         serializer = SendPasswordResetEmailSerializer(data=request.data)
@@ -66,8 +71,9 @@ class SendPasswordResetEmailView(APIView):
         return Response({'msg': 'Password Reset link send. Please check your Email'}, status=status.HTTP_200_OK)
 
 
-class UserPasswordResetView(APIView):
+class UserPasswordResetView(generics.GenericAPIView):
     renderer_classes = [UserRenderer]
+    serializer_class = UserPasswordResetSerializer
 
     def post(self, request, uid, token, format=None):
         serializer = UserPasswordResetSerializer(
