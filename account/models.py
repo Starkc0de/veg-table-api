@@ -41,7 +41,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='Email',max_length=255, unique=True,)
     name = models.CharField(max_length=200)
-    mobile = models.IntegerField(unique=True)
+    mobile = models.IntegerField(unique=True, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)

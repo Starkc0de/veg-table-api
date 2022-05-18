@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-h0@2b(3knf+&j#&#v%461-b=9f(m+opy8d0yzyk@kg=pljyiuv
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+AUTH_USER_MODEL = 'account.User'
 
 # Application definition
 
@@ -42,11 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'account.apps.AccountConfig',
+    'veg.apps.VegConfig',
+
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_filters',
 
     'drf_yasg',
     'rest_framework_simplejwt.token_blacklist',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
