@@ -4,13 +4,12 @@ from rest_framework.views import APIView
 from account.serializers import SendPasswordResetEmailSerializer, UserChangePasswordSerializer, UserLoginSerializer, UserPasswordResetSerializer, UserRegistrationSerializer
 from django.contrib.auth import authenticate
 from account.renderers import UserRenderer
+from account.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
-
-
-# Generate Token Manually
 
 def get_tokens_for_user(user):
     refresh = RefreshToken.for_user(user)
@@ -80,3 +79,9 @@ class UserPasswordResetView(generics.GenericAPIView):
             data=request.data, context={'uid': uid, 'token': token})
         serializer.is_valid(raise_exception=True)
         return Response({'msg': 'Password Reset Successfully'}, status=status.HTTP_200_OK)
+
+
+class EditUserView(generics.RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated ]
+    queryset = User.objects.all()     
+    serializer_class = UserRegistrationSerializer
