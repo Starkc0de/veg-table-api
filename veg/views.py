@@ -4,6 +4,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 from .paginations import CustomPagination
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
 
 
 # Create your views here.
@@ -54,9 +55,11 @@ class FoodOnlineOrderView(generics.GenericAPIView):
     serializer_class = FoodOnlineOrderSerializer
     pagination_class = CustomPagination
 
-class SearchView(generics.GenericAPIView):
+class SearchView(generics.ListAPIView):
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['title', 'discriptiion']
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'discriptiion']
 
