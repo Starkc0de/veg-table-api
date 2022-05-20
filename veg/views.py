@@ -13,13 +13,19 @@ class ChooseCountryView(generics.ListAPIView):
     queryset = ChooseCountry.objects.all()
     serializer_class = ChooseCountrySerializer
 
+    """
+    Concrete view for listing a queryset.
+    """
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
 class HotelView(generics.GenericAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly ]
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
     pagination_class = CustomPagination
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['title']
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['title']
 
 
 class TypeVegView(generics.ListAPIView):
@@ -27,12 +33,12 @@ class TypeVegView(generics.ListAPIView):
     queryset = TypeVeg.objects.all()
     serializer_class = TypeVegSerializer   
 
-class RestrurantViewView(generics.ListCreateAPIView):
+class RestrurantViewView(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly ]
     queryset = RestrurantInfo.objects.all()
     serializer_class = RestrurantInfoSerializer
 
-class GalleryView(generics.GenericAPIView):
+class GalleryView(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Gallery.objects.all()
     serializer_class = GallerySerializer
@@ -47,4 +53,10 @@ class FoodOnlineOrderView(generics.GenericAPIView):
     queryset = FoodOnlineOrder.objects.all()
     serializer_class = FoodOnlineOrderSerializer
     pagination_class = CustomPagination
+
+class SearchView(generics.GenericAPIView):
+    queryset = Hotel.objects.all()
+    serializer_class = HotelSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['title', 'discriptiion']
 
