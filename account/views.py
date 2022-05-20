@@ -25,10 +25,13 @@ class UserRegistrationView(generics.GenericAPIView):
 
     def post(self, request, format=None):
         serializer = UserRegistrationSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        token = get_tokens_for_user(user)
-        return Response({'token': token, 'msg': 'Registration Successful'}, status=status.HTTP_201_CREATED)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.save()
+            token = get_tokens_for_user(user)
+            return Response({'token': token, 'msg': 'Registration Successful', 'status':'1'}, status=status.HTTP_201_CREATED)
+        else:
+            return Response({'token': token, 'msg': 'Registration Successful', 'status':'0'}, status=status.HTTP_201_CREATED)
+
 
 
 class UserLoginView(generics.GenericAPIView):

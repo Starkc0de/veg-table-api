@@ -13,7 +13,7 @@ class ChooseCountryView(generics.ListAPIView):
     queryset = ChooseCountry.objects.all()
     serializer_class = ChooseCountrySerializer
 
-class HotelView(generics.ListCreateAPIView,generics.GenericAPIView):
+class HotelView(generics.GenericAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly ]
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
@@ -32,7 +32,7 @@ class RestrurantViewView(generics.ListCreateAPIView):
     queryset = RestrurantInfo.objects.all()
     serializer_class = RestrurantInfoSerializer
 
-class GalleryView(generics.ListCreateAPIView,generics.GenericAPIView):
+class GalleryView(generics.GenericAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Gallery.objects.all()
     serializer_class = GallerySerializer
@@ -42,8 +42,8 @@ class RatingView(generics.ListCreateAPIView):
     queryset = RatingReviews.objects.all()
     serializer_class = RatingSerializer
 
-class FoodOnlineOrderView(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticated ]
+class FoodOnlineOrderView(generics.GenericAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly ]
     queryset = FoodOnlineOrder.objects.all()
     serializer_class = FoodOnlineOrderSerializer
     pagination_class = CustomPagination
