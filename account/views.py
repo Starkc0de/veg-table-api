@@ -27,10 +27,12 @@ class UserRegistrationView(generics.GenericAPIView):
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             user = serializer.save()
+            user.status == True
+            # print(user.status)
             token = get_tokens_for_user(user)
-            return Response({'token': token, 'msg': 'Registration Successful', 'status':'1'}, status=status.HTTP_201_CREATED)
+            return Response({'token': token, 'msg': 'Registration Successful'}, status=status.HTTP_201_CREATED)
         else:
-            return Response({'msg': 'Registration can not Successful', 'status':'0'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'msg': 'Registration can not Successful' }, status=status.HTTP_400_BAD_REQUEST)
 
 
 
