@@ -3,6 +3,7 @@ from account.views import SendPasswordResetEmailView, UserChangePasswordView, Us
 
 
 urlpatterns = [
+    
     path('register/', UserRegistrationView.as_view(), name='register'),
     path('login/', UserLoginView.as_view(), name='login'),
     path('changepassword/', UserChangePasswordView.as_view(), name='changepassword'),

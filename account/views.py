@@ -30,7 +30,7 @@ class UserRegistrationView(generics.GenericAPIView):
             token = get_tokens_for_user(user)
             return Response({'token': token, 'msg': 'Registration Successful', 'status':'1'}, status=status.HTTP_201_CREATED)
         else:
-            return Response({'token': token, 'msg': 'Registration Successful', 'status':'0'}, status=status.HTTP_201_CREATED)
+            return Response({'msg': 'Registration can not Successful', 'status':'0'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 
