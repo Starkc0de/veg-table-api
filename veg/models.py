@@ -1,3 +1,4 @@
+import email
 from email.policy import default
 from django.db import models
 from django_countries.fields import CountryField
@@ -91,4 +92,22 @@ class FoodOnlineOrder(models.Model):
 
     class Meta:
         verbose_name_plural = "FoodOnlineOrder"  # display table name for admin
-        db_table = 'FoodOnlineOrder'                                                                 
+        db_table = 'FoodOnlineOrder'   
+
+
+class BookTable(models.Model):
+    book_id = models.ForeignKey(User, on_delete=models.CASCADE,null=True, blank=True)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE,null=True, blank=True)
+    people = models.IntegerField(null=True, blank=True)
+    name = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    date_booking = models.DateTimeField(auto_now_add=True) 
+    preferred_table = models.IntegerField(null=True, blank=True)
+    phone_number = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return str(self.name)
+
+    class Meta:
+        verbose_name_plural = "BookTable"  # display table name for admin
+        db_table = 'BookTable'                                                                         

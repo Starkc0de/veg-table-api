@@ -42,11 +42,11 @@ class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='Email',max_length=255, unique=True,)
     name = models.CharField(max_length=200)
     mobile = models.IntegerField(unique=True, null=True, blank=True)  
-    status = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    otp = models.IntegerField(null=True, blank=True)   # email verification otp
 
     objects = UserManager()
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from veg.models import ChooseCountry, Hotel, TypeVeg, RestrurantInfo, Gallery, RatingReviews, FoodOnlineOrder
+from veg.models import ChooseCountry, Hotel, TypeVeg, RestrurantInfo, Gallery, RatingReviews, FoodOnlineOrder, BookTable
 from django.contrib.admin.options import ModelAdmin
 
 # Register your models here.
@@ -31,3 +31,7 @@ admin.site.register(RatingReviews, RatingAdmin)
 class FoodOnlineOrderAdmin(ModelAdmin):
     list_display = ['user_id', 'order', 'title', 'discriptiion', 'price', 'food_image']
 admin.site.register(FoodOnlineOrder, FoodOnlineOrderAdmin)
+
+class BookTableAdmin(ModelAdmin):
+    list_display = ['book_id', 'hotel', 'people', 'name', 'email', 'date_booking', 'preferred_table', 'phone_number']
+admin.site.register(BookTable, BookTableAdmin)

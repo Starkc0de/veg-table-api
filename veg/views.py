@@ -10,7 +10,6 @@ from rest_framework import filters
 # Create your views here.
 
 class ChooseCountryView(generics.ListAPIView):
-    permission_classes = [IsAuthenticated ]
     queryset = ChooseCountry.objects.all()
     serializer_class = ChooseCountrySerializer
 
@@ -21,7 +20,6 @@ class ChooseCountryView(generics.ListAPIView):
         return self.list(request, *args, **kwargs)
 
 class HotelView(generics.GenericAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly ]
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
     pagination_class = CustomPagination
@@ -30,27 +28,22 @@ class HotelView(generics.GenericAPIView):
 
 
 class TypeVegView(generics.ListAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly ]
     queryset = TypeVeg.objects.all()
     serializer_class = TypeVegSerializer   
 
 class RestrurantViewView(generics.ListAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly ]
     queryset = RestrurantInfo.objects.all()
     serializer_class = RestrurantInfoSerializer
 
 class GalleryView(generics.ListAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Gallery.objects.all()
     serializer_class = GallerySerializer
 
 class RatingView(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = RatingReviews.objects.all()
     serializer_class = RatingSerializer
 
 class FoodOnlineOrderView(generics.GenericAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly ]
     queryset = FoodOnlineOrder.objects.all()
     serializer_class = FoodOnlineOrderSerializer
     pagination_class = CustomPagination
