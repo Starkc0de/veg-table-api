@@ -96,7 +96,7 @@ class FoodOnlineOrder(models.Model):
 
 
 class BookTable(models.Model):
-    book_id = models.ForeignKey(User, on_delete=models.CASCADE,null=True, blank=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE,null=True, blank=True)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE,null=True, blank=True)
     people = models.IntegerField(null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)

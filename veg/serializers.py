@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from veg.models import ChooseCountry, Hotel, TypeVeg, RestrurantInfo, Gallery, RatingReviews, FoodOnlineOrder
+from veg.models import ChooseCountry, Hotel, TypeVeg, RestrurantInfo, Gallery, RatingReviews, FoodOnlineOrder, BookTable
 
 
 
@@ -44,5 +44,11 @@ class FoodOnlineOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = FoodOnlineOrder
         fields = ['user_id', 'order', 'title', 'discriptiion', 'price', 'food_image']
+
+class BookTableSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = BookTable
+        fields = ['user_id', 'hotel', 'people', 'name', 'email', 'date_booking', 'preferred_table', 'phone_number']
 
 

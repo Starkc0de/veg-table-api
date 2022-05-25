@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
@@ -83,7 +84,7 @@ class OTPVerify(generics.GenericAPIView):
             User.objects.filter(otp=otp).update(is_active=True)
             return Response({'msg': 'Your OTP Verify','status':True}, status=status.HTTP_200_OK)
         else:
-            return Response({'msg': 'Your OTP not Verify','status':False}, status=status.HTTP_400_BAD_REQUEST)       
+            return Response({'msg': 'Your OTP not Verify','status':False}, status=status.HTTP_400_BAD_REQUEST)               
 
 
 class UserPasswordResetView(generics.GenericAPIView):

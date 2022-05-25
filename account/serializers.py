@@ -83,8 +83,6 @@ class SendPasswordResetEmailSerializer(serializers.Serializer):
             otp=""
             for i in range(4):
                 otp+=str(r.randint(1,9))
-            # d = { 'otp': otp }    
-            # print(d)
             uid = urlsafe_base64_encode(force_bytes(user.id))
             print('Encoded UID', uid)
             token = PasswordResetTokenGenerator().make_token(user)

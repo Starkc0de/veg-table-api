@@ -33,5 +33,5 @@ class FoodOnlineOrderAdmin(ModelAdmin):
 admin.site.register(FoodOnlineOrder, FoodOnlineOrderAdmin)
 
 class BookTableAdmin(ModelAdmin):
-    list_display = ['book_id', 'hotel', 'people', 'name', 'email', 'date_booking', 'preferred_table', 'phone_number']
+    list_display = ['user_id', 'hotel', 'people', 'name', 'email', 'date_booking', 'preferred_table', 'phone_number']
 admin.site.register(BookTable, BookTableAdmin)
